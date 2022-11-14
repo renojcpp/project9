@@ -1,0 +1,186 @@
+function IntHeap.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call Vector.new 1
+pop this 0
+push pointer 0
+return
+function IntHeap.push 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call Vector.push 2
+pop temp 0
+push pointer 0
+push argument 1
+call int.size 1
+push constant 1
+sub
+call IntHeap.up 2
+pop temp 0
+push constant 0
+return
+function IntHeap.swap 1
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call Vector.get 2
+pop local 0
+push this 0
+push argument 1
+push this 0
+push argument 2
+call Vector.get 2
+call Vector.set 3
+pop temp 0
+push this 0
+push argument 2
+push local 0
+call Vector.set 3
+pop temp 0
+push constant 0
+return
+function IntHeap.pop 3
+push argument 0
+pop pointer 0
+push this 0
+call Vector.size 1
+push constant 1
+sub
+pop local 0
+push pointer 0
+push constant 0
+push local 0
+call IntHeap.swap 3
+pop temp 0
+push this 0
+call Vector.pop 1
+return
+function IntHeap.up 3
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+push argument 1
+push constant 1
+sub
+push constant 2
+call Math.divide 2
+pop local 0
+push local 0
+push argument 1
+eq
+push this 0
+push argument 1
+call Vector.get 2
+push this 0
+push local 0
+call Vector.get 2
+lt
+not
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push pointer 0
+push local 0
+push argument 1
+call IntHeap.swap 3
+pop temp 0
+push local 0
+pop argument 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function IntHeap.down 6
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+push constant 2
+push local 0
+call Math.multiply 2
+push constant 1
+add
+pop local 2
+push local 2
+push argument 2
+gt
+push local 2
+or
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push argument 1
+gt
+return
+label IF_FALSE0
+push local 2
+pop local 1
+push local 2
+push constant 1
+add
+pop local 3
+push local 3
+push argument 2
+lt
+push this 0
+push local 3
+call Vector.get 2
+and
+push this 0
+push local 2
+call Vector.get 2
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 3
+pop local 1
+label IF_FALSE1
+push this 0
+push local 1
+call Vector.get 2
+push this 0
+push local 0
+call Vector.get 2
+lt
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push argument 1
+gt
+return
+label IF_FALSE2
+push pointer 0
+push local 0
+push local 1
+call IntHeap.swap 3
+pop temp 0
+push local 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+push argument 1
+gt
+return

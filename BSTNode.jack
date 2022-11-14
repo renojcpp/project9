@@ -16,6 +16,7 @@ class BSTNode {
 		let right = null;
 
 		let v = m;
+		return this;
 	}
 
 	method BSTNode getLeft() {
@@ -27,18 +28,24 @@ class BSTNode {
 	}
 
 	method void setLeft(BSTNode node) {
-		left = node;
+		let left = node;
+
+		return;
 	}
 
 	method void setRight(BSTNode node) {
-		right = node;
+		let right = node;
+
+		return;
 	}
 
 	method int getValue() {
 		return v;
 	}
 
-	method int setValue(int i) {
-		v = i;
+	method void setValue(int i) {
+		let v = i;
+
+		return;
 	}
 }

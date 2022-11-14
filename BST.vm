@@ -1,0 +1,118 @@
+function BST.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 0
+push pointer 0
+return
+function BST.doSearch 1
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 2
+push argument 1
+call BSTNode.getValue 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+return
+label IF_FALSE1
+label IF_FALSE0
+push argument 1
+call BSTNode.getValue 1
+pop local 0
+push argument 2
+push local 0
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push local 0
+call int.getRight 1
+push argument 2
+call BST.doSearch 3
+return
+label IF_FALSE2
+push pointer 0
+push local 0
+call int.getLeft 1
+push argument 2
+call BST.doSearch 3
+return
+function BST.doInsert 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 2
+call BSTNode.new 1
+return
+label IF_FALSE0
+push argument 2
+push argument 1
+call BSTNode.getValue 1
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+push pointer 0
+push argument 1
+call BSTNode.getRight 1
+push argument 2
+call BST.doInsert 3
+call BSTNode.setRight 2
+pop temp 0
+label IF_FALSE1
+push argument 2
+push argument 1
+call BSTNode.getValue 1
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 1
+push pointer 0
+push argument 1
+call BSTNode.getLeft 1
+push argument 2
+call BST.doInsert 3
+call BSTNode.setLeft 2
+pop temp 0
+label IF_FALSE2
+push argument 1
+return
+function BST.insert 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push argument 1
+call BST.doInsert 3
+pop temp 0
+push constant 0
+return
+function BST.exists 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push argument 1
+call BST.doSearch 3
+push constant 0
+eq
+not
+return

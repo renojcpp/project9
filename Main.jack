@@ -1,0 +1,36 @@
+class Main {
+	function void main() {
+		var BST bst;
+		var IntHeap heap;
+		var Vector vec;
+		var int t;
+
+		let bst = BST.new();
+		do bst.insert(8);
+		do bst.insert(6);
+		do bst.insert(5);
+		do bst.insert(1);
+
+		if (bst.exists(5)) {
+			do Output.printString("exists!");
+			do Output.println();
+		}
+
+		let heap = IntHeap.new(10);
+
+		do heap.push(9);
+		do heap.push(3);
+		do heap.push(6);
+		do heap.push(1);
+
+
+		let vec = Vector.new(10);
+		do vec.push(1);
+		do vec.push(2);
+		do vec.push(3);
+		let t = vec.pop();
+
+		do Output.printInt(t);
+		return;
+	}
+}

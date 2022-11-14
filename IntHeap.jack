@@ -1,14 +1,17 @@
 class IntHeap {
 	field Vector v;
 
-	constructor Field new(int n) {
+	constructor IntHeap new(int n) {
 		let v = Vector.new(n);
+
+		return this;
 	}
 
 	method void push(int n) {
 		do v.push(n);
 
 		do up(n.size() - 1);
+		return;
 	}
 
 	method void swap(int i, int j) {
@@ -17,6 +20,8 @@ class IntHeap {
 		let t = v.get(i);
 		do v.set(i, v.get(j));
 		do v.set(j, t);
+
+		return;
 	}
 
 	method int pop() {
@@ -30,17 +35,19 @@ class IntHeap {
 		return v.pop();
 	}
 
-	method up(int j) {
+	method void up(int j) {
 		var int i;
 		var int l, r;
 		while (true) {
 			let i = (j - 1) / 2;
-			if ((i == j) || ~(v.get(j) < v.get(i))) {
-				break;
+			if ((i = j) | ~(v.get(j) < v.get(i))) {
+				return;
 			}
 			do swap(i, j);
-			j = i;
+			let j = i;
 		}
+
+		return;
 	}
 
 	method boolean down(int i0, int n) {
@@ -50,21 +57,21 @@ class IntHeap {
 
 		while (true) {
 			let j1 = 2 * i + 1;
-			if (j1 > n || j1 < 0) {
-				break;
+			if (j1 > n | j1 < 0) {
+				return i > i0;
 			}
 
 			let j = j1;
 			let j2 = j1 + 1;
-			if  j2 < n && v.get(j2) < v.get(j1) {
-				j = j2;
+			if  (j2 < n & v.get(j2) < v.get(j1)) {
+				let j = j2;
 			}
 
 			if (~(v.get(j) < v.get(i))) {
-				break;
+				return i > i0;
 			}
 			do swap(i, j);
-			i = j;
+			let i = j;
 		}
 
 		return i > i0;

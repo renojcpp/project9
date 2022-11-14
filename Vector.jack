@@ -16,7 +16,8 @@ class Vector {
 	}
 
 	method void set(int i, int v) {
-		arr[i] = v;
+		let arr[i] = v;
+		return;
 	}
 
 	method int get(int i) {
@@ -24,16 +25,18 @@ class Vector {
 	}
 
 	method void push(int v) {
-		if (size >= max) {
-			grow();
+		if (size > max | size = max) {
+			do grow();
 		}
 
-		arr[size] = v;
-		size = size + 1;
+		let arr[size] = v;
+		let size = size + 1;
+
+		return;
 	}
 
 	method int pop() {
-		size = size - 1;
+		let size = size - 1;
 		return arr[size + 1];
 	}
 
@@ -45,11 +48,13 @@ class Vector {
 		let i = 0;
 
 		while (i < max) {
-			next[i] = arr[i];
-			i = i + 1;
+			let next[i] = arr[i];
+			let i = i + 1;
 		}
 
 		do arr.dispose();
-		arr = next;
+		let arr = next;
+
+		return;
 	}
 }

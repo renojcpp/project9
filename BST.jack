@@ -3,13 +3,17 @@ class BST {
 
 	constructor BST new() {
 		let root = null;
+
+		return this;
 	}
 
 	method BSTNode doSearch(BSTNode r, int v) {
 		var int n;
 
-		if (r == null || r.getValue() == v) {
-			return r;
+		if (r = null) {
+			if (v = r.getValue()) {
+				return r;
+			}
 		}
 
 		let n = r.getValue();
@@ -23,16 +27,16 @@ class BST {
 	}
 	
 	method BSTNode doInsert(BSTNode r, int v) {
-		if (!root) {
+		if (root = null) {
 			return BSTNode.new(v);
 		}
 
 		if (v > r.getValue()) {
-			do r.setRight(Insert(r.getRight(), v));
+			do r.setRight(doInsert(r.getRight(), v));
 		}
 
-		else if (v < r.getValue()) {
-			do r.setLeft(Insert(r.getLeft(), v));
+		if (v < r.getValue()) {
+			do r.setLeft(doInsert(r.getLeft(), v));
 		}
 
 		return r;
@@ -40,9 +44,10 @@ class BST {
 
 	method void insert(int v) {
 		do doInsert(root, v);
+		return;
 	}
 
 	method boolean exists(int v) {
-		return doSearch(root) != null;
+		return ~(doSearch(root, v) = null);
 	}
 }
