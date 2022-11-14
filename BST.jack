@@ -1,0 +1,48 @@
+class BST {
+	field BSTNode root;
+
+	constructor BST new() {
+		let root = null;
+	}
+
+	method BSTNode doSearch(BSTNode r, int v) {
+		var int n;
+
+		if (r == null || r.getValue() == v) {
+			return r;
+		}
+
+		let n = r.getValue();
+		
+		if (v > n) {
+			return doSearch(n.getRight(), v);
+		} 
+
+		return doSearch(n.getLeft(), v);
+		
+	}
+	
+	method BSTNode doInsert(BSTNode r, int v) {
+		if (!root) {
+			return BSTNode.new(v);
+		}
+
+		if (v > r.getValue()) {
+			do r.setRight(Insert(r.getRight(), v));
+		}
+
+		else if (v < r.getValue()) {
+			do r.setLeft(Insert(r.getLeft(), v));
+		}
+
+		return r;
+	}
+
+	method void insert(int v) {
+		do doInsert(root, v);
+	}
+
+	method boolean exists(int v) {
+		return doSearch(root) != null;
+	}
+}

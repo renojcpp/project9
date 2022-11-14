@@ -1,0 +1,44 @@
+class BSTNode {
+	field BSTNode left, right;
+	field int v;
+
+	constructor BSTNode fullNew(BSTNode p, BSTNode n, int m) {
+		let left = p;
+		let right = n;
+
+		let v = m;
+
+		return this;
+	}
+
+	constructor BSTNode new(int m) {
+		let left = null;
+		let right = null;
+
+		let v = m;
+	}
+
+	method BSTNode getLeft() {
+		return left;
+	}
+
+	method BSTNode getRight() {
+		return right;
+	}
+
+	method void setLeft(BSTNode node) {
+		left = node;
+	}
+
+	method void setRight(BSTNode node) {
+		right = node;
+	}
+
+	method int getValue() {
+		return v;
+	}
+
+	method int setValue(int i) {
+		v = i;
+	}
+}

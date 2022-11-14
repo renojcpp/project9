@@ -1,0 +1,55 @@
+class Vector {
+	field Array arr;
+	field int max;
+	field int size;
+
+	constructor Vector new(int s) {
+		let arr = Array.new(s);
+		let max = s;
+		let size = 0;
+
+		return this;
+	}
+
+	method int size() {
+		return size;
+	}
+
+	method void set(int i, int v) {
+		arr[i] = v;
+	}
+
+	method int get(int i) {
+		return arr[i];
+	}
+
+	method void push(int v) {
+		if (size >= max) {
+			grow();
+		}
+
+		arr[size] = v;
+		size = size + 1;
+	}
+
+	method int pop() {
+		size = size - 1;
+		return arr[size + 1];
+	}
+
+	method void grow() {
+		var Array next;
+		var int i;
+
+		let next = Array.new(size * 2);
+		let i = 0;
+
+		while (i < max) {
+			next[i] = arr[i];
+			i = i + 1;
+		}
+
+		do arr.dispose();
+		arr = next;
+	}
+}
